@@ -10,29 +10,17 @@ function Hero() {
   };
 
   return (
-    <div className="hero py-32 bg-base-100">
-      <div className="hero-content max-w-5xl flex-col lg:flex-row-reverse">
-        <img
-          //   src="https://picsum.photos/seed/picsum/500/300"
-          src="/images/hero.png"
-          className="max-w-sm rounded-lg shadow-2xl"
-        />
-        <div>
-          <h1 className="text-5xl font-bold">
-            Discover, Share, and Dive into the World of Books !
-          </h1>
-          <p className="py-6">
-            Welcome to our online haven for book enthusiasts! Whether you're an
-            avid reader, a passionate book collector, or a literary explorer,
-            our platform is your gateway to a vast universe of knowledge,
-            imagination, and storytelling
-          </p>
-          <button className="btn btn-primary" onClick={sendToSeller_Signup}>
-            Get Started
-          </button>
+    <div className="hero max-h-screen" style={{backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)'}}>
+      <div className="hero-overlay bg-opacity-60" > </div>
+        <div className="hero-content text-start text-neutral-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">Discover and get new ways to automate your Business !</h1>
+            <p className="mb-5">Welcome to our online haven for book enthusiasts! Whether you're an avid reader, a passionate book collector, or a literary explorer, our platform is your gateway to a vast universe of knowledge, imagination, and storytelling</p>
+            <button className="btn btn-primary" onClick={sendToSeller_Signup}>Get Started</button>
+          </div>
         </div>
-      </div>
     </div>
+
   );
 }
 

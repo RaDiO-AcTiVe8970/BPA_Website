@@ -9,6 +9,7 @@ import { Inter } from "@next/font/google";
 import Hero from "./components/home/Hero";
 import Features from "./components/home/Features";
 import Testimonials from "./components/home/Testimonials";
+import Contacts from "./components/home/contact";
 import dynamic from 'next/dynamic';
 
 const _Layout = dynamic(() => import('./components/layout/_layout'))
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero />
         <Features />
         <Testimonials />
+        
       </_Layout>
     </>
   );

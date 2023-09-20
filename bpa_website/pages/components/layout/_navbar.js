@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/router";  
 
 export default function _NavBar() {
   const router = useRouter();
@@ -49,7 +49,7 @@ export default function _NavBar() {
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <a className="btn btn-ghost normal-case text-xl">
-            Interstellar Library
+            Business Process Automation
           </a>
         </div>
         <div className="flex-none">
@@ -61,43 +61,6 @@ export default function _NavBar() {
               <a>About Us</a>
             </li>
             <li onClick={sendToContactUs}><a>Contact Us</a></li>
-            {/* Signup */}
-            <li>
-              <details>
-                <summary>Signup</summary>
-                <ul className="p-2 bg-base-100">
-                  <li>
-                    <a>Customer</a>
-                  </li>
-                  <li onClick={sendToSeller_Signup}>
-                    <a>Seller</a>
-                  </li>
-                  
-                  {/* <li><a>Moderator</a></li>
-                    <li><a>Admin</a></li> */}
-                </ul>
-              </details>
-            </li>
-            {/* Login */}
-            <li>
-              <details>
-                <summary>Login</summary>
-                <ul className="p-2 bg-base-100">
-                  <li>
-                    <a>Customer</a>
-                  </li>
-                  <li onClick={sendToSeller_Login}>
-                    <a>Seller</a>
-                  </li>
-                  <li onClick={sendToModerator_Login}>
-                    <a>Moderator</a>
-                  </li>
-                  <li>
-                    <a>Admin</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
           </ul>
         </div>
       </div>
