@@ -12,6 +12,7 @@ function contact() {
                         width="340"
                         height="385"
                     />
+                    
                     <hr className="md:hidden border-t border-gray-300 my-4" /> {/* Divider for mobile view */}
                     <div className="md:col-span-2">
                         <div className="border-l border-gray-300 pl-4">
