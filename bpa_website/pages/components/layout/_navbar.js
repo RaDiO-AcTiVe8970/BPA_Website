@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";  
+import Image from "next/image";
 
 export default function _NavBar() {
   const router = useRouter();
@@ -32,24 +33,35 @@ export default function _NavBar() {
     });
   };
 
-  const sendToAboutUs = function () {
-    router.push({
-      pathname: "/about-us",
-    });
+  const scrollToAboutDiv = function () {
+    const abtdiv = document.getElementById("abtdiv");
+    if(abtdiv){
+      abtdiv.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
-  const sendToContactUs = function () {
-    router.push({
-      pathname: "/contact-us",
-    });
+  const scrollToContactDiv = () => {
+    const contactdiv = document.getElementById("contactdiv");
+
+    if (contactdiv) {
+      // Using the 'scrollIntoView' method to scroll to the target div
+      contactdiv.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="flex-1">
+          
           <a className="btn btn-ghost normal-case text-xl">
-            Business Process Automation
+            <Image
+                src={"/images/logo_c.png"}
+                alt="Preview"
+                width={100}
+                height={50}
+            />
+            {/*Business Process Automation Ltd.*/}
           </a>
         </div>
         <div className="flex-none">
@@ -57,10 +69,10 @@ export default function _NavBar() {
             <li onClick={sendTHome}>
               <a>Home</a>
             </li>
-            <li onClick={sendToAboutUs}>
+            <li onClick={scrollToAboutDiv}>
               <a>About Us</a>
             </li>
-            <li onClick={sendToContactUs}><a>Contact Us</a></li>
+            <li onClick={scrollToContactDiv}><a>Contact Us</a></li>
           </ul>
         </div>
       </div>

@@ -34,7 +34,7 @@ const featuresData = [
 function Features() {
   return (
     <>
-      <div className="grid place-items-center w-full bg-base-200">
+      <div id="abtdiv" className="grid place-items-center w-full bg-base-200">
         <div className="max-w-5xl py-24 content-center justify-center">
           <h1 className="text-4xl  text-center font-bold">Our Services</h1>
           <div className="grid mt-12 md:grid-cols-3 grid-cols-1 gap-8">

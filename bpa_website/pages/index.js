@@ -23,7 +23,7 @@ export default function Home() {
         <Hero />
         <Features />
         <Testimonials />
-        
+        <Contacts />
       </_Layout>
     </>
   );
