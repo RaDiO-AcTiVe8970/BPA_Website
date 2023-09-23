@@ -3,29 +3,6 @@ import Image from "next/image";
 
 export default function _NavBar() {
   const router = useRouter();
-  const sendToSeller_Login = function () {
-    router.push({
-      pathname: "/seller/login",
-    });
-  };
-
-  const sendToSeller_Signup = function () {
-    router.push({
-      pathname: "/seller/signup",
-    });
-  };
-
-  const sendToModerator_Login = function () {
-    router.push({
-      pathname: "/moderator/login",
-    });
-  };
-
-  const sendToModerator_Signup = function () {
-    router.push({
-      pathname: "/moderator/register",
-    });
-  };
 
   const sendTHome = function () {
     router.push({
