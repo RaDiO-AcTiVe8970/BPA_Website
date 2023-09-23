@@ -11,6 +11,7 @@ function contact() {
                         referrerpolicy="no-referrer-when-downgrade"
                         width="340"
                         height="385"
+                        className="rounded-lg shadow-md"    
                     />
                     
                     <hr className="md:hidden border-t border-gray-300 my-4" /> {/* Divider for mobile view */}
@@ -27,7 +28,7 @@ function contact() {
                                     type="text"
                                     id="name"
                                     name="name"
-                                    className="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
                                     placeholder="Your Name"
                                     required
                                 />
@@ -40,7 +41,7 @@ function contact() {
                                     type="email"
                                     id="email"
                                     name="email"
-                                    className="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
                                     placeholder="Your Email"
                                     required
                                 />
@@ -53,7 +54,7 @@ function contact() {
                                     id="message"
                                     name="message"
                                     rows="4"
-                                    className="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
                                     placeholder="Your Message"
                                     required
                                 ></textarea>
