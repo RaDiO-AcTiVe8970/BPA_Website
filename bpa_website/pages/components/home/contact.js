@@ -62,8 +62,7 @@ function contact() {
                             <div className="mt-6">
                                 <button
                                     type="submit"
-                                    className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-200"
-                                >
+                                    className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-200">
                                     Submit
                                 </button>
                             </div>
