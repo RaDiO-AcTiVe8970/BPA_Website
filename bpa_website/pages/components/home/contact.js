@@ -21,40 +21,40 @@ function contact() {
                             <form>
                                 {/* ... (Form fields code here) */}
                                 <div className="mb-4">
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="name" className="block text-sm font-medium text-white">
                                     Name
                                 </label>
                                 <input
                                     type="text"
                                     id="name"
                                     name="name"
-                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-700 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
                                     placeholder="Your Name"
                                     required
                                 />
                             </div>
                             <div className="mb-4">
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="email" className="block text-sm font-medium text-white">
                                     Email
                                 </label>
                                 <input
                                     type="email"
                                     id="email"
                                     name="email"
-                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-700 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
                                     placeholder="Your Email"
                                     required
                                 />
                             </div>
                             <div className="mb-4">
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="message" className="block text-sm font-medium text-white">
                                     Message
                                 </label>
                                 <textarea
                                     id="message"
                                     name="message"
                                     rows="4"
-                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-700 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500 sm:text-sm"
                                     placeholder="Your Message"
                                     required
                                 ></textarea>
@@ -62,7 +62,7 @@ function contact() {
                             <div className="mt-6">
                                 <button
                                     type="submit"
-                                    className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-200">
+                                    className="bg-indigo-500 text-black px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-200">
                                     Submit
                                 </button>
                             </div>
