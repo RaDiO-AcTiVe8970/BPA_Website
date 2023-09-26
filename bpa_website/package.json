@@ -11,6 +11,8 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
     "autoprefixer": "10.4.15",
+    "flowbite": "^1.8.1",
+    "flowbite-react": "^0.6.1",
     "next": "13.5.1",
     "postcss": "8.4.30",
     "react": "18.2.0",

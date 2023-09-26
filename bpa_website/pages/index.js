@@ -7,6 +7,7 @@
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Hero from "./components/home/Hero";
+import Slider from "./components/home/slider";
 import Features from "./components/home/Features";
 import Testimonials from "./components/home/Testimonials";
 import Contacts from "./components/home/contact";
@@ -20,7 +21,8 @@ export default function Home() {
     <>
       <_Title title="Interstellar Library" />
       <_Layout>
-        <Hero />
+        {/*<Hero />*/}
+        <Slider />
         <Features />
         <Testimonials />
         <Contacts />
