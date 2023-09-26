@@ -4,15 +4,13 @@ function contact() {
             <div className="max-w-5xl py-24 content-center justify-center">
                 <h1 className="text-4xl text-center font-bold">Contact Us</h1>
                 <div className="grid mt-12 md:grid-cols-3 grid-cols-1 gap-8">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d228.1393394408942!2d90.4126157206344!3d23.810439231354422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sBaridhara%20DOHS%20road%2011!5e0!3m2!1sen!2sbd!4v1686400689114!5m2!1sen!2sbd"
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        width="340"
-                        height="385"
-                        className="rounded-lg shadow-md"    
-                    />
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d234.8246146241962!2d90.41278743810331!3d23.81029566997158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c71bcf754e23%3A0x69c229de7a882b3d!2sMaxEcho%20HR%20and%20Payroll%20Software!5e0!3m2!1sen!2sbd!4v1695727710690!5m2!1sen!2sbd" 
+                            width="340" 
+                            height="385" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                     
                     <hr className="md:hidden border-t border-gray-300 my-4" /> {/* Divider for mobile view */}
                     <div className="md:col-span-2">
