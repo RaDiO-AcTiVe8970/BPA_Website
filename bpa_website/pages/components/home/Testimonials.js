@@ -1,3 +1,7 @@
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Element, scroller } from 'react-scroll';
+
 const testimonialsData = [
   {
     text: "Outstanding experience with the software. It exceeded my expectations in every aspect. Highly recommended!",
@@ -17,7 +21,7 @@ const testimonialsData = [
   {
     text: "The software has greatly improved our workflow. It's been a game-changer for us!",
     name: "Tariq Rahman",
-    img: "images/interstellar_library/Tariq_Rahman.jpg",
+    img: "/images/interstellar_library/Tariq_Rahman.jpg",
   },
   {
     text: "I'm amazed by the software's efficiency. It has made my job much easier. Thanks a lot!",
@@ -33,19 +37,63 @@ const testimonialsData = [
 ];
 
 function Testimonials() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Listen for scroll events to trigger animations
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    // Calculate the position of the Testimonials section
+    const testimonialsSection = document.getElementById('testimonialsDiv');
+    if (testimonialsSection) {
+      const testimonialsSectionTop = testimonialsSection.getBoundingClientRect().top;
+
+      // Check if the Testimonials section is in the viewport
+      if (testimonialsSectionTop < window.innerHeight * 0.75) {
+        setIsVisible(true);
+      }
+    }
+  };
+
+  // Function to scroll to the Features section
+  const scrollToFeatures = () => {
+    scroller.scrollTo('featuresSection', {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+    });
+  };
+
   return (
-    <>
-      <div className="grid place-items-center w-full bg-base-100" data-theme="cupcake">
+    <Element name="testimonialsSection">
+      <div
+        id="testimonialsDiv"
+        className="grid place-items-center w-full bg-base-100"
+        data-theme="cupcake"
+      >
         <div className="max-w-5xl py-24 content-center justify-center">
           <h1 className="text-4xl text-center text-black font-bold">Testimonials</h1>
           <div className="grid mt-12 md:grid-cols-3 grid-cols-1 gap-8">
             {testimonialsData.map((testimonial, key) => {
               return (
-                <div key={key} className="card w-full bg-base-100 shadow-xl">
+                <motion.div
+                  key={key}
+                  className={`card w-full bg-base-100 shadow-xl ${
+                    isVisible ? 'animate-fade-in' : 'opacity-0'
+                  }`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.5, delay: key * 0.3 }}
+                  whileHover={{ scale: 1.05 }}
+                >
                   <figure className="px-10 pt-10">
                     <img
                       className="mask w-16 h-16 mask-circle"
-                    //   src="https://picsum.photos/100/100"
                       src={testimonial.img}
                       alt=""
                     />
@@ -54,13 +102,13 @@ function Testimonials() {
                     <p className="text-black">{testimonial.text}</p>
                     <p className="text-slate-500">-{testimonial.name}</p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
       </div>
-    </>
+    </Element>
   );
 }
 
