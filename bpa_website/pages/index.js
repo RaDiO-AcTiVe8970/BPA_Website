@@ -21,8 +21,8 @@ export default function Home() {
     <>
       <_Title title="Interstellar Library" />
       <_Layout>
-        {/*<Hero />*/}
-        <Slider />
+        {<Hero />}
+        {/*<Slider />*/}
         <Features />
         <Testimonials />
         <Contacts />

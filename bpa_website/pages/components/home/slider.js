@@ -125,21 +125,36 @@ const Carousel = () => {
     <div className="flex justify-center w-full py-2 gap-2">
       <a href="#slide1" 
          onClick={() => setCurrentSlide(1)}
-         className={`btn btn-xs ${currentSlide === 1 ? 'active' : ''}`}
+         className={`dot ${currentSlide === 1 ? 'active' : ''}`}
       >
-        1
+        <Image src="/images/Edit_cover.jpg"
+                width={60}
+                height={50}
+                loading='lazy'
+                className='rounded-full opacity-50'
+                alt='slide1'/>
       </a> 
       <a href="#slide2" 
          onClick={() => setCurrentSlide(2)}
-         className={`btn btn-xs ${currentSlide === 2 ? 'active' : ''}`}
+         className={`dots ${currentSlide === 2 ? 'active' : ''}`}
       >
-        2
+        <Image src="/images/Edit_cover.3.jpg"
+                width={60}
+                height={50}
+                loading='lazy'
+                className='rounded-full opacity-50'
+                alt='slide2'/>
       </a> 
       <a href="#slide3" 
          onClick={() => setCurrentSlide(3)}
-         className={`btn btn-xs ${currentSlide === 3 ? 'active' : ''}`}
+         className={`dot ${currentSlide === 3 ? 'active' : ''}`}
       >
-        3
+        <Image src="/images/Edit_cover2.jpg"
+                width={60}
+                height={50}
+                loading='lazy'
+                className='w-full rounded-full opacity-50'
+                alt='slide3'/>
       </a> 
     </div>
     </>
