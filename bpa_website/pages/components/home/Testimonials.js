@@ -35,9 +35,9 @@ const testimonialsData = [
 function Testimonials() {
   return (
     <>
-      <div className="grid place-items-center w-full bg-base-100">
+      <div className="grid place-items-center w-full bg-base-100" data-theme="cupcake">
         <div className="max-w-5xl py-24 content-center justify-center">
-          <h1 className="text-4xl text-center font-bold">Testimonials</h1>
+          <h1 className="text-4xl text-center text-black font-bold">Testimonials</h1>
           <div className="grid mt-12 md:grid-cols-3 grid-cols-1 gap-8">
             {testimonialsData.map((testimonial, key) => {
               return (
@@ -51,7 +51,7 @@ function Testimonials() {
                     />
                   </figure>
                   <div className="card-body items-center text-center">
-                    <p>{testimonial.text}</p>
+                    <p className="text-black">{testimonial.text}</p>
                     <p className="text-slate-500">-{testimonial.name}</p>
                   </div>
                 </div>

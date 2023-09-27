@@ -34,9 +34,9 @@ const featuresData = [
 function Features() {
   return (
     <>
-      <div id="abtdiv" className="grid place-items-center w-full bg-base-200">
+      <div id="abtdiv" className="grid place-items-center w-full bg-base-200" data-theme="cupcake">
         <div className="max-w-5xl py-24 content-center justify-center">
-          <h1 className="text-4xl  text-center font-bold">Our Services</h1>
+          <h1 className="text-4xl  text-center text-black font-bold">Our Services</h1>
           <div className="grid mt-12 md:grid-cols-3 grid-cols-1 gap-8">
             {featuresData.map((feature, key) => {
               return (
@@ -45,8 +45,8 @@ function Features() {
                   className="card w-full bg-base-100 shadow-xl hover:shadow-2xl"
                 >
                   <div className="card-body mt-4 items-center text-center">
-                    <h2 className="card-title">{feature.title}</h2>
-                    <p>{feature.description}</p>
+                    <h2 className="card-title text-black">{feature.title}</h2>
+                    <p className="text-black">{feature.description}</p>
                   </div>
                 </div>
               );

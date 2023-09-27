@@ -28,7 +28,7 @@ export default function _NavBar() {
 
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-black" data-theme="dark">
         <div className="flex-1">
           
           <a className="btn btn-ghost normal-case text-xl">
@@ -44,12 +44,12 @@ export default function _NavBar() {
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li onClick={sendTHome}>
-              <a>Home</a>
+              <a >Home</a>
             </li>
             <li onClick={scrollToAboutDiv}>
-              <a>About Us</a>
+              <a >About Us</a>
             </li>
-            <li onClick={scrollToContactDiv}><a>Contact Us</a></li>
+            <li onClick={scrollToContactDiv}><a >Contact Us</a></li>
           </ul>
         </div>
       </div>
