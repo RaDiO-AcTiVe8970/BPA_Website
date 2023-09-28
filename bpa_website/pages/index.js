@@ -12,6 +12,7 @@ import Features from "./components/home/Features";
 import Testimonials from "./components/home/Testimonials";
 import Contacts from "./components/home/contact";
 import dynamic from 'next/dynamic';
+import Products from "./components/home/product";
 
 const _Layout = dynamic(() => import('./components/layout/_layout'))
 const _Title = dynamic(() => import('./components/layout/_title'))
@@ -23,6 +24,7 @@ export default function Home() {
       <_Layout>
         {<Hero />}
         {/*<Slider />*/}
+        <Products />
         <Features />
         <Testimonials />
         <Contacts />
