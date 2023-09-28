@@ -20,7 +20,7 @@ const _Title = dynamic(() => import('./components/layout/_title'))
 export default function Home() {
   return (
     <>
-      <_Title title="Interstellar Library" />
+      <_Title title="Business Process Automation" />
       <_Layout>
         {<Hero />}
         {/*<Slider />*/}
