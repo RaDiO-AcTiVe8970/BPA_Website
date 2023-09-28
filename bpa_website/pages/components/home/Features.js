@@ -63,7 +63,7 @@ function Features() {
     <>
       <Element name="featuresSection">
         <div
-          id="abtdiv"
+          id="About Us"
           className="grid place-items-center w-full bg-base-200"
           data-theme="cupcake"
         >

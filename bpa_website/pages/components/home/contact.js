@@ -1,6 +1,24 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+
+
 function contact() {
+    const router = useRouter();
+
+    useEffect(() => {
+        // Check if there's a hash fragment in the URL
+        if (router.asPath.includes("#contactdiv")) {
+          // Find the target div by its ID and scroll to it
+            const contactdiv = document.getElementById("contactdiv");
+            if (contactdiv) {
+                contactdiv.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+      }, [router.asPath]);
+
+
     return (
-        <div id="contactdiv" className="grid place-items-center w-full bg-base-200" data-theme="cupcake">
+        <div id="Contact Us" className="grid place-items-center w-full bg-base-200" data-theme="cupcake">
             <div className="max-w-5xl py-24 content-center justify-center">
                 <h1 className="text-4xl text-center text-black font-bold">Contact Us</h1>
                 <div className="grid mt-12 md:grid-cols-3 grid-cols-1 gap-8">

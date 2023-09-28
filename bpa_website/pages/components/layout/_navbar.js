@@ -1,5 +1,40 @@
 import { useRouter } from "next/router";  
 import Image from "next/image";
+import { useEffect } from "react";
+
+const scrollToDivOnTargetPage = (targetPage, divId) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Function to scroll to the target div
+    const scrollIntoView = () => {
+      const targetDiv = document.getElementById(divId);
+      if (targetDiv) {
+        targetDiv.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    // Scroll to the target div when the target page is reached
+    router.events.on("routeChangeComplete", scrollIntoView);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeComplete", scrollIntoView);
+    };
+  }, [router, divId]);
+
+  // Redirect to the target page
+  const redirectToTargetPage = () => {
+    router.push(targetPage);
+  };
+
+  return (
+    <button onClick={redirectToTargetPage}>
+      {divId}
+    </button>
+  );
+};
+
 
 export default function _NavBar() {
   const router = useRouter();
@@ -17,14 +52,11 @@ export default function _NavBar() {
     }
   };
 
-  const scrollToContactDiv = () => {
-    const contactdiv = document.getElementById("contactdiv");
-
-    if (contactdiv) {
-      // Using the 'scrollIntoView' method to scroll to the target div
-      contactdiv.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const sendFAQ = () => {
+    router.push({
+      pathname: "/faq",
+    });
+  }
 
   return (
     <>
@@ -46,10 +78,11 @@ export default function _NavBar() {
             <li onClick={sendTHome}>
               <a >Home</a>
             </li>
-            <li onClick={scrollToAboutDiv}>
-              <a >About Us</a>
+            <li>{scrollToDivOnTargetPage("/", "About Us")}</li>
+            <li>{scrollToDivOnTargetPage("/", "Contact Us")}</li>
+            <li onClick={sendFAQ}>
+              <a> FAQ </a>
             </li>
-            <li onClick={scrollToContactDiv}><a >Contact Us</a></li>
           </ul>
         </div>
       </div>
