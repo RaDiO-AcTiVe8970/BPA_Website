@@ -29,8 +29,7 @@ const _NavBar = () => {
   // Handle scrolling to the "About Us" section on another page
   const scrollToAboutUs = () => {
     const target="/";
-    const hash="#About Us";
-    const targetURL=target+hash;
+    const targetURL=target;
     // Replace 'about' with the actual route to the "About Us" page
     router.push(targetURL);
     // Scroll to the "AboutUs" section with animation after the page change
@@ -42,8 +41,7 @@ const _NavBar = () => {
   // Handle scrolling to the "Contact Us" section on another page
   const scrollToContactUs = () => {
     const target="/";
-    const hash="#Contact Us";
-    const targetURL=target+hash;
+    const targetURL=target;
     // Replace 'about' with the actual route to the "About Us" page
     router.push(targetURL);
     // Scroll to the "ContactUs" section with animation after the page change
@@ -61,6 +59,7 @@ const _NavBar = () => {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
+          <li onClick={sendToHome}><a>Home</a></li>
           <li onClick={scrollToAboutUs}>
             <a>About Us</a>
           </li>

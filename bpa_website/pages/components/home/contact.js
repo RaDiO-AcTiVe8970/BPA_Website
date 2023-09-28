@@ -7,9 +7,9 @@ function contact() {
 
     useEffect(() => {
         // Check if there's a hash fragment in the URL
-        if (router.asPath.includes("#contactdiv")) {
+        if (router.asPath.includes("#Contact Us")) {
           // Find the target div by its ID and scroll to it
-            const contactdiv = document.getElementById("contactdiv");
+            const contactdiv = document.getElementById("Contact Us");
             if (contactdiv) {
                 contactdiv.scrollIntoView({ behavior: "smooth" });
             }
