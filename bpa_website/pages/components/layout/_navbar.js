@@ -50,6 +50,12 @@ const _NavBar = () => {
     }, 1000); // Adjust the delay as needed
   };
 
+  const redirectToProduct =()=>{
+    router.push({
+        pathname: '/products'
+        })
+    }
+
   return (
     <div className="navbar bg-base-black" data-theme="dark">
       <div className="flex-1">
@@ -66,6 +72,7 @@ const _NavBar = () => {
           <li onClick={scrollToContactUs}>
             <a>Contact Us</a>
           </li>
+          <li onClick={redirectToProduct}><a>Products</a></li>
           <li onClick={sendToFAQ}>
             <a>FAQ</a>
           </li>

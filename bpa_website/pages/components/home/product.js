@@ -48,7 +48,7 @@ function Features() {
 
   const redirectToProduct =()=>{
     router.push({
-        pathname: '/product'
+        pathname: '/products'
         })
     }
 

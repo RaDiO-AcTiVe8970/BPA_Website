@@ -26,8 +26,7 @@ function contact() {
                             width="340" 
                             height="385" 
                             allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                            loading="lazy" >
                     </iframe>
                     
                     <hr className="md:hidden border-t border-gray-300 my-4" /> {/* Divider for mobile view */}
