@@ -5,16 +5,19 @@ import { useRouter } from "next/router";
 
 const productsData = [
     {
+      id: 1,
       title: "Financial ERP",
       description:
         "Revolutionize your financial management with our tailored software solutions that seamlessly integrate with your business processes and empower you to make data-driven decisions.",
     },
     {
+      id: 2,
       title: "Enterprise Business Process Automation",
       description:
         "Optimize your operations with our team of skilled software developers who are proficient in various programming languages, methodologies, and tools, ensuring your business processes run efficiently and effortlessly.",
     },
     {
+      id: 3,
       title: "Human Resource & Payroll System",
       description:
         "Simplify your HR and payroll management with our comprehensive system, offering ongoing support, including bug fixes, updates, and expert technical assistance, to keep your HR processes running smoothly.",
@@ -46,11 +49,11 @@ function Features() {
     }
   };
 
-  const redirectToProduct =()=>{
+  const redirectToProduct =(id)=>{
     router.push({
-        pathname: '/products'
-        })
-    }
+        pathname: '/productpage/'+id,
+        });
+    };
 
   return (
     <>
@@ -82,7 +85,7 @@ function Features() {
                     <div className="card-body mt-4 items-center text-center">
                       <h2 className="card-title text-black">{feature.title}</h2>
                       <p className="text-black">{feature.description}</p>
-                      <button className='btn btn-primary' onClick={redirectToProduct}>Learn More!</button>
+                      <button className='btn btn-primary' onClick={() => redirectToProduct(feature.id)}>Learn More!</button>
                     </div>
                   </motion.div>
                 );
