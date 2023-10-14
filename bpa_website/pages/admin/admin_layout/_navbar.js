@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../utils/authcontext";
+import Image from "next/image";
 
 
 export default function _NavBar() {
@@ -10,20 +11,20 @@ export default function _NavBar() {
   const router = useRouter();
   const [userImage, setUserImage] = useState(null);
   const [session_data, setSession_data] = useState(null);
-  const [feedback, setFeedback] = useState('');
+
 
   // #region [Check Backend Session is Active or NOT]
   useEffect(() => {
     const intervalId = setInterval(async () => {
       try {
-        const response = await axios.get("http://localhost:3000/moderator/index", {
+        const response = await axios.get("http://localhost:3000/api/bpa/admin/index", {
           withCredentials: true,
         });
         const sessionData = response.data;
 
       } catch (error) {
         console.error("Error checking session:", error);
-        router.push("/moderator/login");
+        router.push("/admin/login");
       }
     }, 1000);
 
@@ -46,7 +47,7 @@ export default function _NavBar() {
           const imageBlob = new Blob([response.data], {
             type: response.headers["content-type"],
           });
-          const imageUrl = URL.createObjectURL(imageBlob);
+          const imageUrl = "https://api.dicebear.com/avatar.svg";
           setUserImage(imageUrl);
         })
         .catch((error) => {
@@ -94,6 +95,29 @@ export default function _NavBar() {
     });
   };
 
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/bpa/admin/logout",
+        {
+          withCredentials: true,
+        }
+      );
+      if (response.data) {
+        logout();
+        router.push({
+          pathname: "/admin/login",
+        });
+      }
+    } catch (error) {
+      console.error("error failed: ", error);
+    }
+  }
+
+  const sendToHome = () => {
+    router.push("/admin/dashboard");
+  };
+
   
   // #endregion [Storing New Data to Variable]
 
@@ -106,9 +130,9 @@ export default function _NavBar() {
           </button>
         </div> */}
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">
-            Business Process Automation
-          </a>
+        <a className="btn btn-ghost normal-case text-xl" onClick={sendToHome}>
+          <Image src={"/images/logo_c.png"} alt="Preview" width={100} height={50} />
+        </a>
           <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
@@ -152,54 +176,7 @@ export default function _NavBar() {
             </div>
           </div>
         </div>
-        <div className="flex-none gap-2">
-          <div className="form-control">
-            {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
-            <div className="join">
-              <div>
-                <div>
-                  <input
-                    className="input input-bordered join-item"
-                    placeholder="Search"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                  />
-                  {/* Search Result Display */}
-
-                  <div className="artboard">
-                    <ul>
-                      {books.map((book) => (
-                        <li key={book.Book_ID}>
-                          <a onClick={() => handleBookClick(book.Book_ID)}>
-                            {book.Title}
-                            <input type="hidden" value={book.Book_ID} />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <select
-                className="select select-bordered join-item"
-              >
-                <option disabled selected value="">
-                  Filter
-                </option>
-                <option value="Title">Book Title</option>
-                <option value="Author">Book Author</option>
-                <option value="ISBN">Book ISBN</option>
-                <option value="Condition">Book Condition</option>
-                <option value="Price">Book Price</option>
-                {/* <option>Drama</option>
-                <option>Action</option> */}
-              </select>
-              <div className="indicator">
-                {/* <span className="indicator-item badge badge-secondary">new</span>  */}
-                <button className="btn join-item">Search</button>
-              </div>
-            </div>
-          </div>
+        
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -211,7 +188,7 @@ export default function _NavBar() {
               tabIndex={0}
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
-              <li onClick={sendToProfile}>
+              <li >
                 <a className="justify-between">
                   Profile
                   {/* <span className="badge">New</span> */}
@@ -229,11 +206,11 @@ export default function _NavBar() {
                   <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                     ✕
                   </button>
-                  <h3 className="font-bold text-lg">Wanna get out?</h3>
-                  <p className="py-4">See you later, Seller</p>
+                  <h3 className="font-bold text-lg">Are you sure you want to logout?</h3>
+                  <p className="py-4">See you later, admin!</p>
                   <div className="modal-action">
                     {/* if there is a button in form, it will close the modal */}
-                    <a onClick={sendToLogout} className="btn">
+                    <a  className="btn" onClick={handleLogout}>
                       Logout
                     </a>
                   </div>
@@ -246,7 +223,7 @@ export default function _NavBar() {
             </ul>
           </div>
         </div>
-      </div>
+      
     </>
   );
 }

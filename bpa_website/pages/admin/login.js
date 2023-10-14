@@ -7,14 +7,14 @@ import { AuthProvider, useAuth } from "../utils/authcontext";
 
 export default function Login() {
   const router = useRouter();
-  const { login, user}= useAuth();
+  const {login,  user}= useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     try{
       e.preventDefault();
-      const response = await axios.get("http://localhost:3000/api/bpa/admin/login", {
+      const response = await axios.post("http://localhost:3000/api/bpa/admin/login", {
         email,
         password,
       },
@@ -28,6 +28,7 @@ export default function Login() {
         console.log(response.data);
         router.push({
           pathname: "/admin/dashboard",
+          query: { email: email },
         });
       }
     }

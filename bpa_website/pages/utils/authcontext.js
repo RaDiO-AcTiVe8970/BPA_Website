@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   };
   async function doSignOut() {
     try {
-      const response = await axios.post("http://localhost:3000/seller/logout", {
+      const response = await axios.post("http://localhost:3000/api/bpa/admin/logout", {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         withCredentials: true,
       });
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
       document.cookie = null;
 
-      router.push("/seller/login");
+      router.push("/admin/login");
     } catch (error) {
       console.error("error failed: ", error);
     }
