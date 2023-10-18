@@ -1,19 +1,28 @@
-// pages/add-faq.js
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import dynamic from 'next/dynamic';
 
-
-const _Layout = dynamic(() => import('./admin_layout/_mod_layout'))
-const _Title = dynamic(() => import('./admin_layout/_title'))
+const _Layout = dynamic(() => import('./admin_layout/_mod_layout'));
+const _Title = dynamic(() => import('./admin_layout/_title'));
 
 export default function AddFAQ() {
   const [category, setCategory] = useState("");
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const answerTextareaRef = useRef(null);
+
+  const handleAnswerChange = (e) => {
+    setAnswer(e.target.value);
+
+    // Automatically adjust the textarea's height based on the content
+    if (answerTextareaRef.current) {
+      answerTextareaRef.current.style.height = "auto";
+      answerTextareaRef.current.style.height = `${answerTextareaRef.current.scrollHeight}px`;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +67,7 @@ export default function AddFAQ() {
               </label>
               <input
                 type="text"
-                className="input input-primary input-bordered"
+                className="input input-primary input-bordered w-full p-2 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500"
                 placeholder="Category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -71,7 +80,7 @@ export default function AddFAQ() {
               </label>
               <input
                 type="text"
-                className="input input-primary input-bordered"
+                className="input input-primary input-bordered w-full p-2 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500"
                 placeholder="Question"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
@@ -83,10 +92,12 @@ export default function AddFAQ() {
                 Answer
               </label>
               <textarea
-                className="input input-primary input-bordered"
+                ref={answerTextareaRef}
+                className="input input-primary input-bordered w-full p-2 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500"
+                rows="1"
                 placeholder="Answer"
                 value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
+                onChange={handleAnswerChange}
                 required
               />
             </div>

@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useEffect } from "react";
+import { useState } from "react";
 
 // Custom hook for scrolling to a section with animation
 const useScrollToSection = () => {
@@ -17,6 +18,7 @@ const useScrollToSection = () => {
 const _NavBar = () => {
   const router = useRouter();
   const scrollToSection = useScrollToSection();
+  const [isNavbarTransparent, setIsNavbarTransparent] = useState(true);
 
   const sendToHome = () => {
     router.push("/");
@@ -55,9 +57,36 @@ const _NavBar = () => {
         pathname: '/products'
         })
     }
+    const _NavBar = {
+      position: 'top',
+      top: 0,
+      left: 0,
+      width: "100%",
+      zIndex: 1000,
+      opacity: isNavbarTransparent ? 1 : 0.8,
+    };
+
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        // Change the opacity when user scrolls down by a certain amount (e.g., 100 pixels)
+        setIsNavbarTransparent(false);
+      } else {
+        setIsNavbarTransparent(true);
+      }
+    };
+  
+    useEffect(() => {
+      // Add an event listener to the window for scroll events
+      window.addEventListener("scroll", handleScroll);
+  
+      // Remove the event listener when the component unmounts
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
 
   return (
-    <div className="navbar bg-base-black" data-theme="dark">
+    <div className="navbar bg-base-black" style={_NavBar}  data-theme="dark">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl" onClick={sendToHome}>
           <Image src={"/images/logo_c.png"} alt="Preview" width={100} height={50} />

@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const _Layout = dynamic(() => import("./components/layout/_layout"));
 const _Title = dynamic(() => import("./components/layout/_title"));
 
+const useScrollToSection = () => {
+  const scrollToSection = (sectionId) => {
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return scrollToSection;
+};
+
 function FAQPage() {
+  const scrollToSection = useScrollToSection();
+  const router = useRouter();
   const [faqData, setFaqData] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeQuestion, setActiveQuestion] = useState(null);
@@ -32,14 +46,25 @@ function FAQPage() {
       });
   }, []);
 
+  const scrollToContactUs = () => {
+    const target = "/";
+    const targetURL = target;
+    // Replace 'about' with the actual route to the "About Us" page
+    router.push(targetURL);
+    // Scroll to the "ContactUs" section with animation after the page change
+    setTimeout(() => {
+      scrollToSection("Contact Us");
+    }, 1000); // Adjust the delay as needed
+  };
+
   return (
     <>
       <_Title title="FAQ" />
       <_Layout>
         <div data-theme="cupcake">
-          <div className="max-w-3x1 mx-auto py-10">
-            <h1 className="text-xl font-semibold mb-4">Frequently Asked Questions</h1>
-            <div className="tabs tabs-boxed">
+          <div className="max-w-2x1 mx-auto py-6 ml-6 mr-6">
+            <h1 className="text-3xl font-semibold mb-6">Frequently Asked Questions</h1>
+            <div className="tabs tabs-boxed space-x-4">
               {faqData.map((category, categoryIndex) => (
                 <a
                   key={categoryIndex}
@@ -50,24 +75,29 @@ function FAQPage() {
                 </a>
               ))}
             </div>
-            <div className="space-y-4">
-              {faqData.map((category, categoryIndex) =>
-                category.category === activeCategory ? (
-                  <div key={categoryIndex}>
-                    {category.questions.map((item, questionIndex) => (
+            <div className="mt-3">
+              {faqData.map((category, categoryIndex) => (
+                <div key={categoryIndex} className="space-y-1">
+                  {category.category === activeCategory &&
+                    category.questions.map((item, questionIndex) => (
                       <div
                         key={questionIndex}
-                        className="border border-base-300 bg-base-200 p-4 cursor-pointer w-full"
+                        className="rounded-lg p-1 border border-gray-200 cursor-pointer"
                         onClick={() => toggleQuestion(categoryIndex, questionIndex)}
                       >
-                        <div className="text-xl font-medium mb-1">{item.question}</div>
-                        {activeQuestion === questionIndex && <p className="text-xm">{item.answer}</p>}
+                        <div className="text-sm font-semibold mb-2">
+                          <span className="mr-2">&#8226;</span> {/* Bullet point */}
+                          {item.question}
+                        </div>
+                        {activeQuestion === questionIndex && <p className="text-base">{item.answer}</p>}
                       </div>
                     ))}
-                  </div>
-                ) : null
-              )}
+                </div>
+              ))}
             </div>
+            <button className="btn btn-sm mt-6 btn-success " onClick={scrollToContactUs}>
+              Ask a Question
+            </button>
           </div>
         </div>
       </_Layout>

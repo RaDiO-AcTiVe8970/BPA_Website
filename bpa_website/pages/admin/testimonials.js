@@ -1,5 +1,4 @@
-// pages/add-testimonials.js
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +12,17 @@ export default function AddTestimonials() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null); // Store the selected file
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const textareaRef = useRef(null);
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+
+    // Automatically adjust the textarea's height based on the content
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +68,7 @@ export default function AddTestimonials() {
                 </label>
                 <input
                   type="text"
-                  className="input input-primary input-bordered"
+                  className="input input-primary input-bordered w-full p-2 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500"
                   placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -70,10 +80,12 @@ export default function AddTestimonials() {
                   Description
                 </label>
                 <textarea
-                  className="input input-primary input-bordered"
+                  ref={textareaRef}
+                  className="input input-primary input-bordered w-full p-2 rounded-md shadow-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-indigo-500"
+                  rows="1"
                   placeholder="Description"
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={handleDescriptionChange}
                   required
                 />
               </div>

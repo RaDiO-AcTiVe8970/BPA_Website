@@ -38,28 +38,17 @@ export default function _NavBar() {
   // When the page loads
   useEffect(() => {
     if (user != null) {
-      axios
-        .get("http://localhost:3000/seller/profile/profile_image", {
-          responseType: "arraybuffer", // Indicate that we're expecting binary data
-          withCredentials: true,
-        })
-        .then((response) => {
-          const imageBlob = new Blob([response.data], {
-            type: response.headers["content-type"],
-          });
-          const imageUrl = "https://api.dicebear.com/avatar.svg";
-          setUserImage(imageUrl);
-        })
-        .catch((error) => {
-          setUserImage(null); // Set to null if there's an error
-        });
-
+      // Set a placeholder image URL
+      const placeholderImageUrl = "https://api.dicebear.com/avatar.svg";
+      setUserImage(placeholderImageUrl);
+  
       console.log("user:  " + user.email);
       console.log("user:  " + user.cookie);
     } else {
-      router.push("/moderator/login");
+      router.push("/admin/login");
     }
   }, []);
+  
 
   // #endregion [Get Moderator Image] When the Navbar is Called
 
