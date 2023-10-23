@@ -22,7 +22,12 @@ export default function Home() {
     <>
       <_Title title="Business Process Automation" />
       <_Layout>
-        {<Hero />}
+        {<Hero 
+        title="Discover and get new ways to automate your Business!" 
+        description="Welcome to our online haven for book enthusiasts! Whether you're an
+            avid reader, a passionate book collector, or a literary explorer,
+            our platform is your gateway to a vast universe of knowledge,
+            imagination, and storytelling"/>}
         {/*<Slider />*/}
         <Products />
         <Features />

@@ -52,7 +52,7 @@ const ProductDescriptionPage = () => {
     <div>
       <_Title title="Products" />
       <_Layout>
-        <div data-theme="cupcake">
+        <div data-theme="cupcake" style={{ paddingTop: "60px" }}>
         {products.map((product, index) => (
           <motion.div
             key={index}

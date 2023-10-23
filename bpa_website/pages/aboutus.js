@@ -4,7 +4,9 @@ import dynamic from "next/dynamic";
 const _Layout = dynamic(() => import('./components/layout/_layout'))
 const _Title = dynamic(() => import('./components/layout/_title'))
 
+
 const AboutUsPage = () => {
+    
   return (
     <>
     <_Title title="About Us" />

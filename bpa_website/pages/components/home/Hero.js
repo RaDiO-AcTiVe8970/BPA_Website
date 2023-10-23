@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-function Hero() {
+function Hero(props) {
   const router = useRouter();
   const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
   const [fadeIn, setFadeIn] = useState(false);
@@ -34,6 +34,8 @@ function Hero() {
     return () => clearInterval(intervalId);
   }, []);
 
+  
+
   const sendToSeller_Signup = function () {
     router.push({
       pathname: "/seller/signup",
@@ -48,23 +50,21 @@ function Hero() {
       }}
     >
       <div className="hero-overlay bg-opacity-60"> </div>
-      <div className="hero-content text-start text-neutral-content">
+      <div className="hero-content text-start text-neutral-content" style={{ paddingTop: "100px" }}>
+        {/* Add the paddingTop style to create space */}
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">
-            Discover and get new ways to automate your Business !
+            {props.title}
           </h1>
           <p className="mb-5">
-            Welcome to our online haven for book enthusiasts! Whether you're an
-            avid reader, a passionate book collector, or a literary explorer,
-            our platform is your gateway to a vast universe of knowledge,
-            imagination, and storytelling
+            {props.description}
           </p>
-          <button
+          {/*<button
             className="btn btn-primary"
             onClick={sendToSeller_Signup}
           >
             Get Started
-          </button>
+          </button>*/}
         </div>
       </div>
     </div>

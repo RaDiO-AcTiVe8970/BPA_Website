@@ -1,0 +1,10 @@
+.slideInCard {
+    transition: transform 0.5s;
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .slideInCard:hover {
+    transform: translateX(-20px); /* Adjust the distance as needed */
+    opacity: 1;
+  }

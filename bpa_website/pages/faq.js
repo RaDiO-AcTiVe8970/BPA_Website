@@ -61,7 +61,7 @@ function FAQPage() {
     <>
       <_Title title="FAQ" />
       <_Layout>
-        <div data-theme="cupcake">
+        <div data-theme="cupcake" style={{ paddingTop: "60px" }}>
           <div className="max-w-2x1 mx-auto py-6 ml-6 mr-6">
             <h1 className="text-3xl font-semibold mb-6">Frequently Asked Questions</h1>
             <div className="tabs tabs-boxed space-x-4">
