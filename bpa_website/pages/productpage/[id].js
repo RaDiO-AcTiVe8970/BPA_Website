@@ -62,7 +62,7 @@ function ProductPage() {
     <>
       <_Title title="Product Page" />
       <_Layout>
-        <div className="container mx-auto mt-6" data-theme="cupcake">
+        <div className="container mx-auto p-4 mt-10" data-theme="cupcake">
           {product ? (
             <motion.div
               className="bg-gray-100 p-8 mb-8"

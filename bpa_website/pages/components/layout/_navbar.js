@@ -31,6 +31,9 @@ const _NavBar = () => {
   const sendToCP =()=>{
     router.push("././company_profile");
   };
+  const sendToCareer =()=>{
+    router.push("././career");
+  }
 
   // Handle scrolling to the "About Us" section on another page
   const scrollToAboutUs = () => {
@@ -106,6 +109,7 @@ const _NavBar = () => {
             <a>Contact Us</a>
           </li>
           <li onClick={sendToCP}><a>Company Profile</a></li>
+          <li onClick={sendToCareer}><a>Career</a></li>
           <li onClick={redirectToProduct}><a>Products</a></li>
           <li onClick={sendToFAQ}>
             <a>FAQ</a>

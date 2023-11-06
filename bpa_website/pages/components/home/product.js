@@ -70,7 +70,7 @@ function Features() {
             <div className="grid mt-12 md:grid-cols-3 grid-cols-1 gap-8">
               {productsData.map((feature, key) => {
                 return (
-                  <motion.div
+                  <motion.div  
                     key={key}
                     className="card w-full bg-base-100 shadow-xl hover:shadow-2xl"
                     initial={{ opacity: 0, y: 20 }} // Initial opacity set to 0 and y position to create an upward animation
