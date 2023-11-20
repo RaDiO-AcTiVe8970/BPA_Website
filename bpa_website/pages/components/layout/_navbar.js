@@ -34,6 +34,9 @@ const _NavBar = () => {
   const sendToCareer =()=>{
     router.push("././career");
   }
+  const sendToAboutUs =()=>{
+    router.push("././aboutus");
+  }
 
   // Handle scrolling to the "About Us" section on another page
   const scrollToAboutUs = () => {
@@ -101,8 +104,7 @@ const _NavBar = () => {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          <li onClick={sendToHome}><a>Home</a></li>
-          <li onClick={scrollToAboutUs}>
+          <li onClick={sendToAboutUs}>
             <a>About Us</a>
           </li>
           <li onClick={scrollToContactUs}>

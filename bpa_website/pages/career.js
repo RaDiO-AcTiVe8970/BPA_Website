@@ -1,57 +1,103 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import "daisyui/dist/full.css"; // Import DaisyUI styles
+import React, { useState } from "react";
+import "daisyui/dist/full.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useState } from "react";
 
-const _Layout = dynamic(() => import('./components/layout/_layout'));
-const _Title = dynamic(() => import('./components/layout/_title'));
+import _Layout from './components/layout/_layout';
+import _Title from './components/layout/_title';
 
 function CareerPage() {
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [name, setName] = useState("");
+  const [nid, setNid] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [phone, setPhone] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [address, setAddress] = useState("");
+  const [resume, setResume] = useState(null);
+  const [coverLetter, setCoverLetter] = useState("");
+  const [DOB, setDOB] = useState("");
+  const [mohtername, setMotherName] = useState("");
+  const router = useRouter();
+  const designation=router.query.designation;
+
+
+
+  const format= new Date();
+  const appDate= format.toLocaleString('en-US',{
+    month: '2-digit',
+    day: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("gender", gender);
-      formData.append("phone", phone);
-      formData.append("nationality", nationality);
-      formData.append("address", address);
-      formData.append("resume", resume);
-      formData.append("coverLetter", coverLetter);
-  
+      if(designation==null)
+      {
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("gender", gender);
+        formData.append("phone", phone);
+        formData.append("nationality", nationality);
+        formData.append("address", address);
+        formData.append("resume", resume);
+        formData.append("coverLetter", coverLetter);
+        formData.append("DOB", DOB);
+        formData.append("nid", nid);
+        formData.append("mohtername", mohtername);
+        formData.append("appDate", appDate);
+        formData.append("designation", "No circular");
+      }
+      else
+      {
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("gender", gender);
+        formData.append("phone", phone);
+        formData.append("nationality", nationality);
+        formData.append("address", address);
+        formData.append("resume", resume);
+        formData.append("coverLetter", coverLetter);
+        formData.append("DOB", DOB);
+        formData.append("nid", nid);
+        formData.append("mohtername", mohtername);
+        formData.append("appDate", appDate);
+        formData.append("designation", designation);
+      }
+
       const response = await axios.post("http://localhost:3000/api/bpa/admin/addCareer", formData, {
         withCredentials: true,
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
       });
-  
-      if (response.status === 200) {
+
+      if (response.status === 201) {
         toast.success("Application added successfully");
       } else {
-        toast.error("Failed to add Application. Please check the server logs.");
+        toast.error("Entry Already Exists");
       }
-  
+
       setIsSubmitting(false);
       console.log(response);
-      console.log(formData);
     } catch (error) {
-      console.error(error); // Log the error for debugging
-      toast.error("Failed to add Application. Please check the server logs.");
+      console.error(error);
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+      }
+      toast.error("Entry Exists");
       setIsSubmitting(false);
     }
   };
-  
-  
 
   return (
     <>
@@ -82,6 +128,20 @@ function CareerPage() {
                     className="input input-bordered w-full"
                     placeholder="John Doe"
                     required
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="nid" className="block text-gray-700 text-sm font-bold mb-2">NID</label>
+                  <input
+                    type="text"
+                    id="nid"
+                    name="nid"
+                    className="input input-bordered w-full"
+                    placeholder="123-456-7890"
+                    required
+                    onChange={(e) => setNid(e.target.value)}
                   />
                 </div>
 
@@ -94,6 +154,7 @@ function CareerPage() {
                     className="input input-bordered w-full"
                     placeholder="you@example.com"
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -105,6 +166,7 @@ function CareerPage() {
                     name="gender"
                     className="select select-bordered w-full"
                     required
+                    onChange={(e) => setGender(e.target.value)}
                   >
                     <option value="" disabled selected>Select Gender</option>
                     <option value="Male">Male</option>
@@ -120,6 +182,7 @@ function CareerPage() {
                     className="input input-bordered w-full"
                     placeholder="+8801XXXXXXXXX"
                     required
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
 
@@ -132,6 +195,32 @@ function CareerPage() {
                     className="input input-bordered w-full"
                     placeholder="Bengali"
                     required
+                    onChange={(e) => setNationality(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="DOB" className="block text-gray-700 text-sm font-bold mb-2">Date of Birth</label>
+                  <input
+                    type="date"
+                    id="DOB"
+                    name="DOB"
+                    className="input input-bordered w-full"
+                    required
+                    onChange={(e) => setDOB(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label htmlFor="mohtername" className="block text-gray-700 text-sm font-bold mb-2">Mother Name</label>
+                  <input
+                    type="text"
+                    id="mohtername"
+                    name="mohtername"
+                    className="input input-bordered w-full"
+                    placeholder="Mary Jane"
+                    required
+                    onChange={(e) => setMotherName(e.target.value)}
                   />
                 </div>
 
@@ -144,6 +233,7 @@ function CareerPage() {
                     className="input input-bordered w-full"
                     placeholder="123-456-7890"
                     required
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
 
@@ -156,6 +246,7 @@ function CareerPage() {
                     accept=".pdf"
                     className="input input-bordered w-full"
                     required
+                    onChange={(e) => setResume(e.target.files[0])}
                   />
                 </div>
 
@@ -167,15 +258,13 @@ function CareerPage() {
                     className="input input-bordered w-full h-32"
                     placeholder="Write your cover letter here"
                     required
+                    onChange={(e) => setCoverLetter(e.target.value)}
                   />
                 </div>
 
                 <div className="flex justify-end">
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                  >
-                    Submit Application
+                  <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                    {isSubmitting ? "Submitting..." : "Submit Application"}
                   </button>
                 </div>
               </form>
@@ -189,4 +278,3 @@ function CareerPage() {
 }
 
 export default CareerPage;
-
