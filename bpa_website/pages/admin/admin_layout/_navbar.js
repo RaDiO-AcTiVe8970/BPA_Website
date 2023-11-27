@@ -60,6 +60,12 @@ export default function _NavBar() {
     });
   };
 
+  const sendToCareer = function () {
+    router.push({
+      pathname: "/admin/careerapp",
+    });
+  };
+
   const sendToFAQ = function () {
     router.push({
       pathname: "/admin/faq",
@@ -148,6 +154,10 @@ export default function _NavBar() {
                 {/* Sidebar content here */}
                 <li onClick={sendToDashboard}>
                   <a>Dashboard</a>
+                </li>
+
+                <li onClick={sendToCareer}>
+                  <a>Career Applications</a>
                 </li>
                 
                 <li onClick={sendToQueries}>

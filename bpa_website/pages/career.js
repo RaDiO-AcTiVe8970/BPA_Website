@@ -3,6 +3,7 @@ import "daisyui/dist/full.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 import _Layout from './components/layout/_layout';
 import _Title from './components/layout/_title';
@@ -21,7 +22,9 @@ function CareerPage() {
   const [DOB, setDOB] = useState("");
   const [mohtername, setMotherName] = useState("");
   const router = useRouter();
-  const designation=router.query.designation;
+  const {title}=router.query;
+  const designation=title;
+  
 
 
 
@@ -73,6 +76,8 @@ function CareerPage() {
         formData.append("appDate", appDate);
         formData.append("designation", designation);
       }
+
+      console.log(formData.designation);
 
       const response = await axios.post("http://localhost:3000/api/bpa/admin/addCareer", formData, {
         withCredentials: true,

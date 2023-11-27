@@ -104,15 +104,22 @@ const _NavBar = () => {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          <li onClick={sendToAboutUs}>
-            <a>About Us</a>
-          </li>
-          <li onClick={scrollToContactUs}>
-            <a>Contact Us</a>
+          <li>
+            <div className="dropdown">
+            <div tabIndex={0} role="button" >About Us ▼</div>
+            <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+              <li onClick={sendToAboutUs}>
+                <a>About Us</a>
+              </li>
+              <li onClick={scrollToContactUs}>
+                <a>Contact Us</a>
+              </li>
+            </ul>
+            </div>
           </li>
           <li onClick={sendToCP}><a>Company Profile</a></li>
           <li onClick={sendToCareer}><a>Career</a></li>
-          <li onClick={redirectToProduct}><a>Products</a></li>
+          <li className="flex flex:auto" onClick={redirectToProduct}><a>Products</a></li>
           <li onClick={sendToFAQ}>
             <a>FAQ</a>
           </li>

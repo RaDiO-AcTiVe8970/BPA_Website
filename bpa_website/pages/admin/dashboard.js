@@ -10,7 +10,9 @@ function Dashboard() {
     <div>
       <_Title title="Dashboard" />
       <_Layout>
+      <div data-theme="cupcake">
       <h1>Dashboard</h1>
+      </div>
       </_Layout>
     </div>
   );
