@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const _Layout = dynamic(() => import('../admin/admin_layout/_mod_layout'));
 const _Title = dynamic(() => import('../admin/admin_layout/_title'));
@@ -24,6 +26,27 @@ const CareerApplications = () => {
     fetchData();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      // Make a request to delete the application with the specified ID
+      await axios.delete(`http://localhost:3000/api/bpa/admin/deleteCareer/${id}`, {
+        withCredentials: true,
+      });
+
+      // Update the applications state to reflect the deletion
+      setApplications((prevApplications) =>
+        prevApplications.filter((application) => application.id !== id)
+      );
+
+      // Show success toast
+      toast.success('Application deleted successfully');
+    } catch (error) {
+      console.error('Error deleting application:', error);
+      // Show error toast
+      toast.error('Error deleting application');
+    }
+  };
+
   return (
     <>
       <_Title title="Career Applications" />
@@ -31,26 +54,46 @@ const CareerApplications = () => {
         <div data-theme="cupcake">
           <div className="container mx-auto my-8">
             <h1 className="text-3xl font-bold mb-4">Career Applications</h1>
-            <ul>
-              {applications.map((application) => (
-                <li key={application.id} className="mb-4 p-4 border rounded shadow">
-                  <p className="text-xl font-semibold">{application.name}</p>
-                  <p className="text-gray-500">{application.email}</p>
-                  <p className="text-gray-500">Date Applied: {application.appDate}</p>
-                  <a
-                    href={`http://localhost:3000/api/bpa/admin/resumes/${application.resume}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline block mt-2"
-                  >
-                    View Resume
-                  </a>
-                  <div className="mt-4">
-                    
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <table className="min-w-full bg-white border border-gray-300">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 border-b">Name</th>
+                  <th className="py-2 px-4 border-b">NID</th>
+                  <th className="py-2 px-4 border-b">Email</th>
+                  <th className="py-2 px-4 border-b">Date Applied</th>
+                  <th className="py-2 px-4 border-b">Resume</th>
+                  <th className="py-2 px-4 border-b">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {applications.map((application) => (
+                  <tr key={application.id}>
+                    <td className="py-2 px-4 border-b">{application.name}</td>
+                    <td className="py-2 px-4 border-b">{application.nid}</td>
+                    <td className="py-2 px-4 border-b">{application.email}</td>
+                    <td className="py-2 px-4 border-b">{application.appDate}</td>
+                    <td className="py-2 px-4 border-b">
+                      <a
+                        href={`http://localhost:3000/api/bpa/admin/resumes/${application.resume}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Resume
+                      </a>
+                    </td>
+                    <td className="py-2 px-4 border-b">
+                      <button
+                        onClick={() => handleDelete(application.id)}
+                        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </_Layout>

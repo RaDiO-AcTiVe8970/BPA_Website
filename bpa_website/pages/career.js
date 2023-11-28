@@ -22,7 +22,7 @@ function CareerPage() {
   const [DOB, setDOB] = useState("");
   const [mohtername, setMotherName] = useState("");
   const router = useRouter();
-  const {title}=router.query;
+  const { title } = router.query;
   const designation=title;
   
 
@@ -43,6 +43,22 @@ function CareerPage() {
     setIsSubmitting(true);
 
     try {
+
+      const today = new Date();
+      const birthDate = new Date(DOB);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      if (age < 18) {
+        toast.error("Age below 18 is not eligible for applying.");
+        setIsSubmitting(false);
+        return;
+      }
+
       const formData = new FormData();
       if(designation==null)
       {
@@ -276,7 +292,7 @@ function CareerPage() {
             </div>
           </div>
         </div>
-        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <ToastContainer position="top-right" autoClose={10000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       </_Layout>
     </>
   );
