@@ -47,6 +47,29 @@ const CareerApplications = () => {
     }
   };
 
+  const handleEmploymentStatusChange = async (id, newStatus) => {
+    try {
+      // Make a request to update the employment status
+      await axios.put(`http://localhost:3000/api/bpa/admin/updateEmploymentStatus/${id}`, {
+        employmentStatus: newStatus,
+      });
+
+      // Update the applications state to reflect the status change
+      setApplications((prevApplications) =>
+        prevApplications.map((application) =>
+          application.id === id ? { ...application, employmentStatus: newStatus } : application
+        )
+      );
+
+      // Show success toast
+      toast.success(`Employment status updated to ${newStatus}`);
+    } catch (error) {
+      console.error('Error updating employment status:', error);
+      // Show error toast
+      toast.error('Error updating employment status');
+    }
+  };
+
   return (
     <>
       <_Title title="Career Applications" />
@@ -62,6 +85,7 @@ const CareerApplications = () => {
                   <th className="py-2 px-4 border-b">Email</th>
                   <th className="py-2 px-4 border-b">Date Applied</th>
                   <th className="py-2 px-4 border-b">Resume</th>
+                  <th className="py-2 px-4 border-b">Employment Status</th>
                   <th className="py-2 px-4 border-b">Actions</th>
                 </tr>
               </thead>
@@ -82,10 +106,26 @@ const CareerApplications = () => {
                         View Resume
                       </a>
                     </td>
+                    <td className="py-2 px-4 border-b">{application.employmentStatus}</td>
                     <td className="py-2 px-4 border-b">
+                      {application.employmentStatus === 'NULL' ? (
+                        <button
+                          onClick={() => handleEmploymentStatusChange(application.id, 'Employed')}
+                          className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                        >
+                          Employ
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleEmploymentStatusChange(application.id, 'NULL')}
+                          className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                        >
+                          Unemploy
+                        </button>
+                      )}
                       <button
                         onClick={() => handleDelete(application.id)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 ml-2"
                       >
                         Delete
                       </button>
