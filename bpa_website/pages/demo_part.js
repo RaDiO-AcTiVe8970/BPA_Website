@@ -59,16 +59,26 @@ const ExcelPageCell = () => {
   const handlePaste = () => {
     if (copiedContent) {
       const updatedCells = [...cells];
-      selectedCells.forEach((cell) => {
+  
+      selectedCells.forEach((cell, index) => {
         const targetRow = cell.rowIndex - copiedContent[0].rowIndex;
         const targetCol = cell.colIndex - copiedContent[0].colIndex;
-        if (updatedCells[targetRow]) {
-          updatedCells[targetRow][targetCol] = copiedContent[0].content;
+  
+        if (
+          targetRow >= 0 &&
+          targetRow < updatedCells.length &&
+          targetCol >= 0 &&
+          targetCol < updatedCells[targetRow].length
+        ) {
+          updatedCells[targetRow][targetCol] = copiedContent[index % copiedContent.length].content;
         }
       });
+  
       setCells(updatedCells);
     }
   };
+  
+  
 
   const handleCellDoubleClick = (rowIndex, colIndex) => {
     const cellContent = cells[rowIndex][colIndex];
